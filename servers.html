@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="img\log.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElSerbe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            overflow: auto;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: black;
+            border: 2px solid;
+            border-image: linear-gradient(to bottom, magenta, purple) 1;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+        .section:hover {
+            box-shadow: 0 0 10px 2px purple;
+        }
+        .section a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .logo {
+            max-width: 100%;
+            cursor: pointer;
+            height: auto;
+            margin: 20px 0;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="container">
+        <div class="sections">
+            <div class="section"><a href="index.html">Servers
+                <img src="img/logos/servers.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+            <div class="section"><a href="about.html">About
+                <img src="img/logos/info.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+        </div>
+        <a href="index.html">
+            <img src="img/serbers.png" alt="ElSerbe Logo" class="logo">
+        </a>
+        <div class="sections">
+            <div class="section">
+                <a href="https://discord.gg/U93PTt8ZEX">
+                    Discord
+                    <img src="img/logos/discord.webp" alt="Discord Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+            <div class="section">
+                <a href="https://www.patreon.com/ltsYuri">
+                    Donate
+                    <img src="img/logos/patreon.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+           
+        </div>
+
+    </div>
+    <style>
+        .section.active {
+            background-color: #2a002a; /* Slightly darker than the border */
+        }
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .content-image {
+            max-width: 90%;
+            height: auto;
+            margin: 20px 0;
+        }
+        .content-box {
+            background-color: black;
+            border: 2px solid;
+            border-image: linear-gradient(to bottom, magenta, purple) 1;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+        }
+        .content-box h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: magenta;
+        }
+        .content-box p {
+            margin: 0;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+    </style>
+    <style>
+        canvas#particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send the canvas to the background */
+        }
+        .content-section {
+            margin-top: -20%; /* Reduce the margin to make the distance smaller */
+        }
+        .content-box a, b {
+            color: magenta;
+            text-shadow: 0 0 10px purple, 0 0 5px magenta;
+        }
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+    </style>
+    <div class="content-section">
+        <img src="img/logo1.png" alt="About Image" class="content-image">
+        <div class="content-box">
+            <h2>SERVER LIST:</h2>
+            <br>
+            <p>Here you'll find all the server IP addresses and their status. They're also on <b>Discord!</b></p> 
+            <br><br>
+        </div>
+         <div class="content-box">
+            <h2>Sven-Coop</h2>
+            <p>[EU] ElSerbe Sven Server</p>
+            <p>Server IP: <b>37.114.50.38:1025</b></p>
+            <p><a href="https://store.steampowered.com/app/225840/Sven_Coop/" target="_blank">Steam Page</a></p><br>
+            <iframe src="https://store.steampowered.com/widget/225840/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+        <div class="content-box">
+            <h2>DOOM II</h2>
+            <p>Servers:  (Click to connect) <br> <a href="zandronum://104.194.11.54:10729"><b>ElSerbe Old time Classics - Complex Doom Invasion</b></a><br><a href="zandronum://104.194.11.54:10832"><b>[ElSerbe] Classics Brutal Doom with E-Day</b></a></p>
+            <p><a href="https://yurisvault.blogspot.com/2023/02/doom-ii.html" target="_blank">HOW TO SET IT UP/ DOWNLOAD</a></p><br>
+            <iframe src="https://store.steampowered.com/widget/2280/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+        <div class="content-box">
+            <h2>Unturned</h2>
+            <p>Server IP: <b>192.168.1.6:27015</b></p>
+            <p><a href="https://store.steampowered.com/app/304930/Unturned/" target="_blank">Steam Page</a></p> <br>
+            <iframe src="https://store.steampowered.com/widget/304930/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+        <div class="content-box">
+            <h2>Conan</h2>
+            <p>Server IP: <b>OFFLINE</b></p>
+            <p><a href="https://store.steampowered.com/app/440900/Conan_Exiles/" target="_blank">Steam Page</a></p>
+            <br><iframe src="https://store.steampowered.com/widget/440900/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+        <div class="content-box">
+            <h2>Gmod</h2>
+            <p>Server IP: <b>OFFLINE</b></p>
+            <p><a href="https://store.steampowered.com/app/4000/Garrys_Mod/" target="_blank">Steam Page</a></p>
+            <br><iframe src="https://store.steampowered.com/widget/4000/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+        <div class="content-box">
+            <h2>Rust</h2>
+            <p>Server IP: <b>OFFLINE</b></p>
+            <p><a href="https://store.steampowered.com/app/252490/Rust/" target="_blank">Steam Page</a></p>
+            <br><iframe src="https://store.steampowered.com/widget/252490/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+       
+    </div>      
+    
+
+    <script>
+        // Highlight the "About" button
+        document.querySelectorAll('.section a').forEach(link => {
+            if (link.getAttribute('href') === 'index.html') {
+                link.parentElement.classList.add('active');
+            }
+        });
+    </script>
+    <script>
+
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor(x, y, speed, size) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+            }
+
+            draw() {
+                const gradient = ctx.createLinearGradient(0, this.y - this.size, 0, this.y + this.size);
+                gradient.addColorStop(0, 'magenta');
+                gradient.addColorStop(1, 'purple');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speed = Math.random() * 2 + 1;
+                const size = Math.random() * 3 + 1;
+                particles.push(new Particle(x, y, speed, size));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles.length = 0;
+            initParticles();
+        });
+    </script>
+    <script>
+        // Create audio element
+        const audio = new Audio('sound/bgmusic.mp3');
+        audio.loop = true;
+        audio.volume = 0.3; // Set volume to 30%
+
+        // Play audio after 0.01s delay
+        setTimeout(() => {
+            audio.play();
+        }, 10);
+
+        // Create floating button container
+        const musicControl = document.createElement('div');
+        musicControl.style.position = 'fixed';
+        musicControl.style.bottom = '20px';
+        musicControl.style.left = '20px';
+        musicControl.style.display = 'flex';
+        musicControl.style.alignItems = 'center';
+        musicControl.style.backgroundColor = 'black';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        musicControl.style.borderRadius = '5px';
+        musicControl.style.padding = '10px';
+        musicControl.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+        musicControl.style.zIndex = '2';
+        
+        // Create play/pause button
+        const playPauseButton = document.createElement('button');
+        playPauseButton.textContent = 'Pause';
+        playPauseButton.style.backgroundColor = 'black';
+        playPauseButton.style.color = 'white';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        playPauseButton.style.fontWeight = 'bold';
+        playPauseButton.style.cursor = 'pointer';
+        playPauseButton.style.marginRight = '10px';
+        playPauseButton.style.padding = '5px 10px';
+        playPauseButton.style.borderRadius = '5px';
+
+        // Toggle play/pause functionality
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.currentTime = 0; // Reset audio to the beginning
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        // Create song name text
+        const songName = document.createElement('span');
+        songName.textContent = 'Elevator Music - Cobalt OST';
+        songName.style.color = 'white';
+        songName.style.fontWeight = 'bold';
+
+        // Append elements to the container
+        musicControl.appendChild(playPauseButton);
+        musicControl.appendChild(songName);
+
+        // Append the container to the body
+        document.body.appendChild(musicControl);
+    </script>
+        <script>
+            // Ensure the DOM is fully loaded before adding the event listener
+            document.addEventListener('DOMContentLoaded', () => {
+                const contentImage = document.querySelector('.content-image');
+                if (contentImage) {
+                    contentImage.addEventListener('click', () => {
+                        window.location.href = 'index.html';
+                    });
+                }
+            });
+        </script>
+</body>
+</html>

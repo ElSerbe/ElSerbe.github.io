@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img\log.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElSerbe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            overflow: auto;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 10px;
+            padding: 0; /* Remove padding to avoid extra space inside the link */
+            background-color: black;
+            border: 2px solid;
+            border-image: linear-gradient(to bottom, magenta, purple) 1;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            display: flex; /* Ensure the section itself is a flex container */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+        .section:hover {
+            box-shadow: 0 0 10px 2px purple;
+        }
+        .section a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: flex; /* Make the entire link a flex container */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            height: 100%;
+            width: 100%;
+            padding: 10px 20px; /* Add padding inside the link */
+        }
+        .logo {
+            max-width: 90%;
+            height: auto;
+            margin: 20px 0;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        .logo-link {
+            display: inline-block; /* Wrap the logo in a clickable area */
+        }
+        .content-image-link {
+            display: inline-block; /* Wrap the logo in a clickable area */
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.logo','.content-image');
+            if (logo) {
+                logo.addEventListener('click', () => {
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="container">
+        <div class="sections">
+            <div class="section"><a href="servers.html">Servers
+                <img src="img/logos/servers.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+            <div class="section"><a href="index.html">About
+                <img src="img/logos/info.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+        </div>
+        <img src="img/about.png" alt="ElSerbe Logo" class="logo">
+        <div class="sections">
+            <div class="section">
+                <a href="https://discord.gg/U93PTt8ZEX">
+                    Discord
+                    <img src="img/logos/discord.webp" alt="Discord Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+            <div class="section">
+                <a href="https://www.patreon.com/ltsYuri">
+                    Donate
+                    <img src="img/logos/patreon.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+           
+        </div>
+
+    </div>
+    <style>
+        .section.active {
+            background-color: #2a002a; /* Slightly darker than the border */
+        }
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .content-image {
+            max-width: 90%;
+            height: auto;
+            margin: 20px 0;
+                        cursor: pointer; /* Indicate it's clickable */
+        }
+        .content-box {
+            background-color: black;
+            border: 2px solid;
+            border-image: linear-gradient(to bottom, magenta, purple) 1;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        .content-box h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: magenta;
+        }
+        .content-box p {
+            margin: 0;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+    </style>
+    <style>
+        canvas#particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send the canvas to the background */
+        }
+        .content-section {
+            margin-top: -20%; /* Reduce the margin to make the distance smaller */
+        }
+        .content-box a, b {
+            color: magenta;
+            text-shadow: 0 0 10px purple, 0 0 5px magenta;
+        }
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+    </style>
+    <div class="content-section">
+        <img src="img/logo1.png" alt="About Image" class="content-image">
+        <div class="content-box">
+            <h2>Hello and welcome to the ElSerbe community!</h2>
+            <br><br>
+            <p>This is a community I created for people to enjoy unique gaming experiences, usually not the most mainstream ones, but definitely special.<br> We have a Discord server to chat about them!</p> 
+            <p>If you'd like to contact me via email or for business inquiries, please message me at:</p>
+            <br><br>
+            <h2><b>ElSerbe@proton.me</b></h2>
+            <br>
+            <h2>ABOUT ME:</h2>
+            <p>Hi, I'm <b>Yuri</b>, a passionate gamer and all-around art enthusiast. I work as a freelance Level Designer (though I’d starve to death if that were my only job), 3D design, and occasionally as an IT technician.<br> I founded the ElSerbe community because what I love most about gaming is sharing the experience with others. In my philosophy, playing with someone, whether cooperatively or competitively, makes any game infinitely better, as it becomes a shared journey of perspectives.</p><br>
+            <p>If you’d like to check out my work, you can visit my <b><a href="https://mod.io/u/itsyurii/">Mod.io</a></b> and <b><a href="https://steamcommunity.com/id/itsyurii/myworkshopfiles/">Steam Workshop</a></b> pages, though many of my projects are private or unfinished. I hope to muster the willpower to complete them someday! It’s a struggle due to personal circumstances, but gaming is a passion I’ll never stop pursuing.</p><br>
+            <p>If you’ve read this far, know that you have my deepest respect. Thank you for being part of this community! I’d be eternally grateful <b><a href="https://patreon.com/ltsYuri/">if you could support me to help cover server costs or even just keep me fed</a></b>. Thank you so much!</p>
+        </div>
+    </div>
+
+    <script>
+        // Highlight the "About" button
+        document.querySelectorAll('.section a').forEach(link => {
+            if (link.getAttribute('href') === 'index.html') {
+                link.parentElement.classList.add('active');
+            }
+        });
+    </script>
+    <script>
+
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor(x, y, speed, size) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+            }
+
+            draw() {
+                const gradient = ctx.createLinearGradient(0, this.y - this.size, 0, this.y + this.size);
+                gradient.addColorStop(0, 'magenta');
+                gradient.addColorStop(1, 'purple');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speed = Math.random() * 2 + 1;
+                const size = Math.random() * 3 + 1;
+                particles.push(new Particle(x, y, speed, size));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles.length = 0;
+            initParticles();
+        });
+    </script>
+    <script>
+        // Create audio element
+        const audio = new Audio('sound/bgmusic.mp3');
+        audio.loop = true;
+        audio.volume = 0.3; // Set volume to 30%
+
+        // Play audio after 0.01s delay
+        setTimeout(() => {
+            audio.play();
+        }, 10);
+
+        // Create floating button container
+        const musicControl = document.createElement('div');
+        musicControl.style.position = 'fixed';
+        musicControl.style.bottom = '20px';
+        musicControl.style.left = '20px';
+        musicControl.style.display = 'flex';
+        musicControl.style.alignItems = 'center';
+        musicControl.style.backgroundColor = 'black';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        musicControl.style.borderRadius = '5px';
+        musicControl.style.padding = '10px';
+        musicControl.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+        musicControl.style.zIndex = '2';
+        
+        // Create play/pause button
+        const playPauseButton = document.createElement('button');
+        playPauseButton.textContent = 'Pause';
+        playPauseButton.style.backgroundColor = 'black';
+        playPauseButton.style.color = 'white';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        playPauseButton.style.fontWeight = 'bold';
+        playPauseButton.style.cursor = 'pointer';
+        playPauseButton.style.marginRight = '10px';
+        playPauseButton.style.padding = '5px 10px';
+        playPauseButton.style.borderRadius = '5px';
+
+        // Toggle play/pause functionality
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.currentTime = 0; // Reset audio to the beginning
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        // Create song name text
+        const songName = document.createElement('span');
+        songName.textContent = 'Elevator Music - Cobalt OST';
+        songName.style.color = 'white';
+        songName.style.fontWeight = 'bold';
+
+        // Append elements to the container
+        musicControl.appendChild(playPauseButton);
+        musicControl.appendChild(songName);
+
+        // Append the container to the body
+        document.body.appendChild(musicControl);
+    </script>
+
+</body>
+</html>

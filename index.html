@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img\log.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElSerbe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 10px;
+            padding: 0; /* Remove padding from the section itself */
+            background-color: black;
+            border: 2px solid;
+            border-image: linear-gradient(to bottom, magenta, purple) 1;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure the link fits within the button */
+        }
+        .section:hover {
+            box-shadow: 0 0 10px 2px purple;
+        }
+        .section a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: block; /* Make the link cover the entire button */
+            width: 100%;
+            height: 100%;
+            padding: 10px 20px; /* Move padding to the link */
+            box-sizing: border-box;
+        }
+        .logo {
+            max-width: 90%;
+            height: auto;
+            margin: 20px 0;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="container">
+        <div class="sections">
+            <div class="section"><a href="servers.html">Servers
+                <img src="img/logos/servers.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+            <div class="section"><a href="about.html">About
+                <img src="img/logos/info.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+            </a></div>
+        </div>
+        <img src="img/logo1.png" alt="ElSerbe Logo" class="logo">
+        <div class="sections">
+            <div class="section">
+                <a href="https://discord.gg/U93PTt8ZEX">
+                    Discord
+                    <img src="img/logos/discord.webp" alt="Discord Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+            <div class="section">
+                <a href="https://www.patreon.com/ltsYuri">
+                    Donate
+                    <img src="img/logos/patreon.png" alt="Patreon Logo" style="height: 1em; vertical-align: middle; margin-left: 5px;">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor(x, y, speed, size) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+            }
+
+            draw() {
+                const gradient = ctx.createLinearGradient(0, this.y - this.size, 0, this.y + this.size);
+                gradient.addColorStop(0, 'magenta');
+                gradient.addColorStop(1, 'purple');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speed = Math.random() * 2 + 1;
+                const size = Math.random() * 3 + 1;
+                particles.push(new Particle(x, y, speed, size));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles.length = 0;
+            initParticles();
+        });
+    </script>
+    <script>
+        // Create audio element
+        const audio = new Audio('sound/bgmusic.mp3');
+        audio.loop = true;
+        audio.volume = 0.3; // Set volume to 30%
+
+        // Play audio after 0.01s delay
+        setTimeout(() => {
+            audio.play();
+        }, 10);
+
+        // Create floating button container
+        const musicControl = document.createElement('div');
+        musicControl.style.position = 'fixed';
+        musicControl.style.bottom = '20px';
+        musicControl.style.left = '20px';
+        musicControl.style.display = 'flex';
+        musicControl.style.alignItems = 'center';
+        musicControl.style.backgroundColor = 'black';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        musicControl.style.borderRadius = '5px';
+        musicControl.style.padding = '10px';
+        musicControl.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+        musicControl.style.zIndex = '2';
+        
+        // Create play/pause button
+        const playPauseButton = document.createElement('button');
+        playPauseButton.textContent = 'Pause';
+        playPauseButton.style.backgroundColor = 'black';
+        playPauseButton.style.color = 'white';
+        musicControl.style.border = '2px solid';
+        musicControl.style.borderImage = 'linear-gradient(to bottom, magenta, purple) 1';
+        playPauseButton.style.fontWeight = 'bold';
+        playPauseButton.style.cursor = 'pointer';
+        playPauseButton.style.marginRight = '10px';
+        playPauseButton.style.padding = '5px 10px';
+        playPauseButton.style.borderRadius = '5px';
+
+        // Toggle play/pause functionality
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.currentTime = 0; // Reset audio to the beginning
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        // Create song name text
+        const songName = document.createElement('span');
+        songName.textContent = 'Elevator Music - Cobalt OST';
+        songName.style.color = 'white';
+        songName.style.fontWeight = 'bold';
+
+        // Append elements to the container
+        musicControl.appendChild(playPauseButton);
+        musicControl.appendChild(songName);
+
+        // Append the container to the body
+        document.body.appendChild(musicControl);
+    </script>
+</body>
+</html>
